@@ -22,11 +22,8 @@
     .preco-tag { font-size: 13px; color: #8f8f8f; letter-spacing: 1px; margin-bottom: 4px; }
     .preco-valor { font-size: 26px; color: #FFD700; font-weight: bold; margin-bottom: 20px; }
     .cta-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 12px; }
-    .btn-upsell { display: block; width: 100%; padding: 18px 24px; border-radius: 999px; border: none; background-color: #00C853; color: #fff; font-weight: bold; font-size: 15px; cursor: pointer; letter-spacing: 0.5px; text-decoration: none; box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); animation: pulsar 2s infinite; }
-    @keyframes pulsar { 0% { transform: scale(0.98); box-shadow: 0 0 rgba(0, 200, 83, 0.4); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 200, 83, 0); } 100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); } }
     .legenda { font-size: 11px; color: #8f8f8f; line-height: 1.4; font-weight: 300; max-width: 300px; text-align: center; }
-    .link-recusa { margin-top: 34px; display: inline-block; font-size: 12px; color: #666; text-decoration: underline; line-height: 1.4; cursor: pointer; font-weight: 300; transition: color 0.2s; }
-    .link-recusa:hover { color: #8f8f8f; }
+    @keyframes pulsar { 0% { transform: scale(0.98); box-shadow: 0 0 rgba(0, 200, 83, 0.4); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 200, 83, 0); } 100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); } }
   </style>
 </head>
 <body>
@@ -43,7 +40,7 @@
     <span style="font-size:11px; color:#8f8f8f;">Essa página será fechada quando o contador zerar</span>
   </div>
 
-  <p>Você acabou de garantir os 7 Protocolos por R$ 9,90. Eles te dão a base pra destravar sua voz.</p>
+  <p>Você acabou de garantir os 7 Protocolos por R$ 67. Eles te dão a base pra destravar sua voz.</p>
   <p class="Destaque-Aviso">
     <strong>Mas atenção:</strong> 89% dos alunos voltam e pedem os protocolos avançados. Porque só os 7 deixam brechas onde sua postura ainda oscila sob pressão.
   </p>
@@ -56,20 +53,84 @@
   <p>Sem novos conceitos. Sem esforço. Só presença estável que não quebra.</p>
   <div class="oferta-box">
     <div class="preco-tag">OFERTA ÚNICA DE 1-CLIQUE</div>
-    <div class="preco-valor">Adicione por apenas R$ 30</div>
+    <div class="preco-valor">Adicione por apenas R$ 97</div>
     <div class="cta-wrapper">
-      <a href="COLAR_LINK_1CLIQUE_CAKTO_AQUI" class="btn-upsell">
-        SIM, QUERO A VERSÃO TURBO<br>
-        <span style="font-size: 11px; font-weight: 300; opacity: 0.9;">Adicionar ao meu pedido por R$ 30</span>
-      </a>
-      <div class="legenda">
-        Cobrança de 1-clique. O valor será adicionado no mesmo cartão. Acesso imediato liberado junto com os 7 Protocolos.
-      </div>
+      <div id="cakto-upsell-wrapper">
+       <meta charset="UTF-8">
+         <cakto-upsell-buttons>
+            <cakto-upsell-accept
+              bg-color="#00C853"
+              text-color="#ffffff"
+              upsell-accept-url="members_area"
+              offer-id="ytdpwg9"
+              app-base-url="https://app.cakto.com.br"
+              offer-type="upsell"
+              upsell-reject-url="members_area"   
+            >
+              SIM, QUERO A VERSÃO TURBO<br>
+              <span style="font-size: 11px; font-weight: 300; opacity: 0.9;">Adicionar ao meu pedido por R$ 97</span>
+            </cakto-upsell-accept>
+            <cakto-upsell-reject
+              upsell-reject-url="members_area"       
+            >
+              Não, obrigado. Prefiro manter só a versão básica e entendo que perderei este desconto.
+            </cakto-upsell-reject>
+          </cakto-upsell-buttons>  
+          
+          <style>
+            cakto-upsell-accept::part(button) {
+                width: 100%;
+                padding: 18px 24px;
+                font-size: 15px;
+                font-weight: bold;
+                border-radius: 999px;
+                border: none;
+                cursor: pointer;
+                letter-spacing: 0.5px;
+                box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
+                animation: pulsar 2s infinite;
+            }
+            cakto-upsell-reject::part(button) {
+                background: transparent;
+                border: none;
+                color: #666;
+                text-decoration: underline;
+                margin-top: 34px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 300;
+                width: 100%;
+                line-height: 1.4;
+            }
+            cakto-upsell-reject::part(button):hover {
+                color: #8f8f8f;
+            }
+          </style>
+
+        <script type="text/javascript" src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js"></script>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const checkCakto = setInterval(function() {
+              if (window.CaktoUpsell) {
+                clearInterval(checkCakto);
+                window.CaktoUpsell.onAccept = function() {
+                  window.location.href = '/turbo';
+                };
+                window.CaktoUpsell.onReject = function() {
+                  window.location.href = '/obrigado';
+                };
+              }
+            }, 100);
+          });
+        </script>
+       </div>
+       
+       <div class="legenda">
+         Cobrança de 1-clique. O valor será adicionado no mesmo cartão. Acesso imediato liberado junto com os 7 Protocolos.
+       </div>
     </div>
   </div>
-  <a class="link-recusa" href="LINK_DA_AREA_DE_MEMBROS">
-    Não, obrigado. Prefiro manter só a versão básica e entendo que perderei este desconto.
-  </a>
 </div>
 </body>
 </html>
