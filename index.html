@@ -13,13 +13,13 @@ margin:0;
 background:#000;
 color:#fff;
 font-family:Arial,sans-serif;
-text-align:center;
+text-align:center
 }
 
 .container{
 max-width:420px;
 margin:auto;
-padding:22px 20px;
+padding:22px 20px
 }
 
 .alerta{
@@ -29,72 +29,80 @@ padding:9px 15px;
 border-radius:30px;
 font-size:12px;
 font-weight:bold;
-line-height:1.4;
+line-height:1.4
 }
 
-.alerta span{
-font-size:10px;
-}
+.alerta span{font-size:10px}
 
 h1{
 color:#FFD700;
 font-size:23px;
 margin:24px 0 10px;
-line-height:1.25;
+line-height:1.25
 }
 
 .sub{
 font-size:14px;
 color:#ddd;
-margin-bottom:20px;
+margin-bottom:20px
+}
+
+.timer{
+border:1px solid #b00000;
+border-radius:22px;
+padding:18px 10px;
+margin:18px 0 24px;
+background:#090909
 }
 
 .urgencia{
 font-size:12px;
-font-weight:bold;
-margin:18px 0;
+font-weight:400;
+letter-spacing:.3px;
+color:#ddd;
+margin-bottom:9px
 }
 
 .urgencia span{
 color:red;
+font-weight:bold
+}
+
+.contador{
+font-size:24px;
+font-weight:bold;
+color:red
 }
 
 .texto{
 font-size:14px;
 color:#ddd;
 line-height:1.6;
-text-align:left;
+text-align:left
 }
 
 .lista{
 text-align:left;
 font-size:14px;
 line-height:1.9;
-margin:8px 0 18px;
+margin:8px 0 18px
 }
 
 .preco{
 color:#FFD700;
 font-size:24px;
 font-weight:bold;
-margin:14px 0;
+margin:14px 0
 }
 
-.botao{
-margin-top:8px;
-}
+.botao{margin-top:8px}
 
 .info{
 font-size:11px;
 color:#999;
-margin-top:10px;
+margin-top:10px
 }
 
-.recusa{
-font-size:11px;
-color:#666;
-margin-top:20px;
-}
 </style>
 </head>
 
@@ -112,8 +120,15 @@ margin-top:20px;
 Leve o VMP para uma camada mais avançada.
 </div>
 
+<div class="timer">
+
 <div class="urgencia">
-🔴 OFERTA SAI DO AR EM MENOS DE: <span>1 HORA</span>
+OFERTA SAI DO AR EM MENOS DE:
+<span>1 HORA</span>
+</div>
+
+<div class="contador" id="contador">59:59</div>
+
 </div>
 
 <div class="texto">
@@ -171,8 +186,19 @@ Acesso 100% imediato
 
 <script src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js"></script>
 
-<style>
+<script>
+let tempo=3599;
 
+setInterval(()=>{
+let m=Math.floor(tempo/60);
+let s=tempo%60;
+document.getElementById("contador").textContent=
+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+if(tempo>0)tempo--;
+},1000);
+</script>
+
+<style>
 cakto-upsell-accept::part(button){
 width:100%;
 padding:17px 15px;
@@ -180,7 +206,7 @@ border-radius:30px;
 font-size:14px;
 font-weight:bold;
 border:0;
-cursor:pointer;
+cursor:pointer
 }
 
 cakto-upsell-reject::part(button){
@@ -189,9 +215,8 @@ border:0;
 color:#666;
 font-size:11px;
 margin-top:20px;
-cursor:pointer;
+cursor:pointer
 }
-
 </style>
 
 </body>
