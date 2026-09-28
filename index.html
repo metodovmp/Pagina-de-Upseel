@@ -59,19 +59,12 @@ background:#090909
 font-size:12px;
 font-weight:400;
 letter-spacing:.3px;
-color:#ddd;
-margin-bottom:9px
+color:#ddd
 }
 
 .urgencia span{
 color:red;
 font-weight:bold
-}
-
-.contador{
-font-size:24px;
-font-weight:bold;
-color:red
 }
 
 .texto{
@@ -95,14 +88,11 @@ font-weight:bold;
 margin:14px 0
 }
 
-.botao{margin-top:8px}
-
 .info{
 font-size:11px;
 color:#999;
 margin-top:10px
 }
-
 </style>
 </head>
 
@@ -126,8 +116,6 @@ Leve o VMP para uma camada mais avançada.
 OFERTA SAI DO AR EM MENOS DE:
 <span>1 HORA</span>
 </div>
-
-<div class="contador" id="contador">59:59</div>
 
 </div>
 
@@ -185,18 +173,6 @@ Acesso 100% imediato
 </div>
 
 <script src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js"></script>
-
-<script>
-let tempo=3599;
-
-setInterval(()=>{
-let m=Math.floor(tempo/60);
-let s=tempo%60;
-document.getElementById("contador").textContent=
-String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
-if(tempo>0)tempo--;
-},1000);
-</script>
 
 <style>
 cakto-upsell-accept::part(button){
